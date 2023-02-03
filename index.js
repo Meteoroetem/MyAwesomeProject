@@ -1,22 +1,17 @@
-var express = require("express");
-var app = express();
-var path = require("path");
+const {readFile, readFileSync} = require('fs');
+const express = require('express');
+const path = require('path');
+const app = express();
 
-var body;
+app.use(express.static(path.join(__dirname, 'public')))
 
-function ButtonPress()
-{
-  alert('textBox');
-}
-
-app.get('/',function(req,res){
-  res.sendFile(path.join(__dirname+'/index.html'));
+app.get('/', (request, response)=>{
+    readFile('./public/Home.html','utf8', (err, html)=>{
+        if (err){
+            response.status(500).send("Sorry, server error 8-(")
+        }
+        response.send(html)
+    })
 });
 
-
-app.listen(3000,);
-
-console.log("Running at Port 3000");
-/*app.post(path.join(__dirname+'/middleware'), function(req, res, next){
-  textBox = req.body
-});*/
+app.listen(process.env.PORT || 3000, ()=>console.log("Running on port http://localhost:3000"));
