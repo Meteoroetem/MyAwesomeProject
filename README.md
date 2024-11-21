@@ -1,1 +1,1 @@
-# [Link to the app](qwertylang.onrender.com)
+# [Link to the app](http://qwertylang.onrender.com)
